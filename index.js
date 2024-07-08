@@ -10,6 +10,11 @@ const bootstrap = async () => {
     const visibility = core.getInput('visibility');
     const token = core.getInput('token');
 
+    if(!(/^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$/.test(secretName)) || secretName.startsWith('GITHUB_')){
+        core.setFailed('Invalid secret name, must follow the following regex: /^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=|[A-Za-z0-9+\\/]{4})$/ and cannot start with GITHUB_' );
+        return;
+    }
+
     let encryptedValue = '';
     let key = '';
 
