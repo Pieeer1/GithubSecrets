@@ -28,7 +28,7 @@ const bootstrap = async () => {
     });
 
     const key = publicKeyResponse.data.key;
-    const keyId = publicKeyRespons.data.key_id;
+    const keyId = publicKeyResponse.data.key_id;
     
     const binsec = sodium.from_string(secret);
 
