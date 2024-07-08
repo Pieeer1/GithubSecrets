@@ -27,7 +27,9 @@ const bootstrap = async () => {
 
     const key = publicKeyResponse.data.key;
     const keyId = publicKeyResponse.data.key_id;
-    
+
+    await sodium.ready;
+
     const binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL)
     const binsec = sodium.from_string(secret);
 
@@ -56,7 +58,7 @@ const bootstrap = async () => {
 };
 
 try {
-    sodium.ready.then(bootstrap);
+    bootstrap();
 }
 catch (error) {
     core.setFailed(error.message);
