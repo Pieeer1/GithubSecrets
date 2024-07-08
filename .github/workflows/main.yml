@@ -28,5 +28,7 @@ jobs:
 
       - name: Create Tag
         run: | 
+          git config --global user.name "Pieeer1"
+          git config --global user.email "${{ secrets.PAT_EMAIL}}"
           git tag -a ${{ steps.gitversion.outputs.AssemblySemVer }} -m "Release ${{ steps.gitversion.outputs.AssemblySemVer }}"
           git push origin ${{ steps.gitversion.outputs.AssemblySemVer }}
