@@ -5,7 +5,7 @@ Manage Github Secrets Through Github Actions
 
 ```yml
      - name: Set Github Secret
-        uses: Pieeer1/GithubSecrets@1.0.0
+        uses: Pieeer1/GithubSecrets@1.0.0.0
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           name: 'TEST_SECRET'
