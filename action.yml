@@ -1,0 +1,28 @@
+name: 'Github Secrets'
+description: 'Create and Update Github Secrets'
+inputs:
+  token:
+    description: 'Github Token'
+    required: true
+  name:
+    description: 'Secret Name'
+    required: true
+  value:
+    description: 'Secret Value'
+    required: true
+  repository:
+    description: 'Repository Name'
+    required: true
+  owner:
+    description: 'The Repository Owner or Organization Name'
+    required: true
+  visibility:
+    description: 'The visibility of the secret. Defaults to private. Options are 'private' or 'all'.'
+    required: false
+    default: 'private'
+outputs:
+  status:
+    description: 'Status of the action'
+runs:
+  using: 'node20'
+  main: 'index.js'
