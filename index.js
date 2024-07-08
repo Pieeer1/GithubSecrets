@@ -15,17 +15,14 @@ const bootstrap = async () => {
         return;
     }
 
-    let encryptedValue = '';
-    let key = '';
+    await sodium.ready;
 
-    sodium.ready.then(() => {
-        key = sodium.crypto_secretbox_keygen();
-        const binsec = sodium.from_string(secret);
+    const key = sodium.crypto_secretbox_keygen();
+    const binsec = sodium.from_string(secret);
 
-        const encBytes = sodium.crypto_box_seal(binsec, key);
+    const encBytes = sodium.crypto_box_seal(binsec, key);
 
-        encryptedValue = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
-    });
+    const encryptedValue = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
 
     console.log(encryptedValue);
     console.log(key)
