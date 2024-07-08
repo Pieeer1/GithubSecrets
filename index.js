@@ -27,6 +27,9 @@ const bootstrap = async () => {
         encryptedValue = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
     });
 
+    console.log(encryptedValue);
+    console.log(key)
+
     const octo = new octokit.Octokit({auth: token});
 
     const response = await octo.request(`PUT /repos/${owner}/${repo}/actions/secrets/${secretName}`, {
