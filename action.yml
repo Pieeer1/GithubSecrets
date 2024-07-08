@@ -17,7 +17,7 @@ inputs:
     description: 'The Repository Owner or Organization Name'
     required: true
   visibility:
-    description: 'The visibility of the secret. Defaults to private. Options are 'private' or 'all'.'
+    description: 'The visibility of the secret. Defaults to private. Options are private or all.'
     required: false
     default: 'private'
 runs:
