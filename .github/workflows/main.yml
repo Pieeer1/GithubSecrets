@@ -24,7 +24,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0 
         with:
           useConfigFile: true
-          configFilePath: .github/version/GitVersion.yml
+          configFilePath: .github/version/version.yml
 
       - name: Create Tag
         run: | 
