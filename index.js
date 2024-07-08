@@ -27,15 +27,13 @@ const bootstrap = async () => {
 
     const key = publicKeyResponse.data.key;
     const keyId = publicKeyResponse.data.key_id;
-    
-    console.log(key);
-    console.log(keyId);
 
     await sodium.ready;
 
+    const binkey = sodium.from_base64(key, sodium.base64_variants.ORIGINAL)
     const binsec = sodium.from_string(secret);
 
-    const encBytes = sodium.crypto_box_seal(binsec, key);
+    const encBytes = sodium.crypto_box_seal(binsec, binkey);
 
     const encryptedValue = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
 
