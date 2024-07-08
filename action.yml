@@ -20,9 +20,6 @@ inputs:
     description: 'The visibility of the secret. Defaults to private. Options are 'private' or 'all'.'
     required: false
     default: 'private'
-outputs:
-  status:
-    description: 'Status of the action'
 runs:
   using: 'node20'
   main: 'index.js'
