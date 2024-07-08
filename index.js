@@ -17,23 +17,31 @@ const bootstrap = async () => {
 
     await sodium.ready;
 
-    const key = sodium.crypto_secretbox_keygen();
+    const octo = new octokit.Octokit({auth: token});
+
+    const publicKeyResponse = await octo.request(`GET /repos/${owner}/${repo}/actions/secrets/public-key`, {
+        owner: owner,
+        repo: repo,
+        headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    });
+
+    const key = publicKeyResponse.data.key;
+    const keyId = publicKeyRespons.data.key_id;
+    
     const binsec = sodium.from_string(secret);
 
     const encBytes = sodium.crypto_box_seal(binsec, key);
 
     const encryptedValue = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
 
-    console.log(encryptedValue);
-    console.log(key)
-
-    const octo = new octokit.Octokit({auth: token});
 
     const response = await octo.request(`PUT /repos/${owner}/${repo}/actions/secrets/${secretName}`, {
         owner: owner,
         repo: repo,
         encrypted_value: encryptedValue,
-        key_id: key,
+        key_id: keyId,
         visibility: visibility,
         headers: {
             'X-GitHub-Api-Version': '2022-11-28'
