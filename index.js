@@ -15,8 +15,6 @@ const bootstrap = async () => {
         return;
     }
 
-    await sodium.ready;
-
     const octo = new octokit.Octokit({auth: token});
 
     const publicKeyResponse = await octo.request(`GET /repos/${owner}/${repo}/actions/secrets/public-key`, {
@@ -30,6 +28,8 @@ const bootstrap = async () => {
     const key = publicKeyResponse.data.key;
     const keyId = publicKeyResponse.data.key_id;
     
+    await sodium.ready;
+
     const binsec = sodium.from_string(secret);
 
     const encBytes = sodium.crypto_box_seal(binsec, key);
