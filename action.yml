@@ -1,5 +1,7 @@
 name: 'Github Secrets'
 description: 'Create and Update Github Secrets'
+icon: 'lock'
+color: 'yellow'
 inputs:
   token:
     description: 'Github Token'
